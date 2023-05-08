@@ -182,7 +182,7 @@ class Registro1 extends Generico1
     public function inserirDetalhe($linhaTxt)
     {
         while (isset(RetornoAbstract::$lines[RetornoAbstract::$linesCounter]) &&
-            $this->data['codigo_lote'] == abs(substr(RetornoAbstract::$lines[RetornoAbstract::$linesCounter], 3, 4))) {
+            $this->data['codigo_lote'] == abs((int)substr(RetornoAbstract::$lines[RetornoAbstract::$linesCounter], 3, 4))) {
             RetornoAbstract::$linesCounter++;
             if (isset(RetornoAbstract::$lines[RetornoAbstract::$linesCounter]) &&
                 substr(RetornoAbstract::$lines[RetornoAbstract::$linesCounter], 13, 1) == "T") {
@@ -191,5 +191,6 @@ class Registro1 extends Generico1
             }
         }
         RetornoAbstract::$linesCounter--;
+//        array_pop($this->children);
     }
 }
