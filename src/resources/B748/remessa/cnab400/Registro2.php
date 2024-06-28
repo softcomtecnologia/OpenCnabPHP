@@ -87,13 +87,14 @@ class Registro2 extends Generico2 {
     }
 
     protected function get_nosso_numero() {
+        $ano = date("y");
         $modulo11 = self::modulo11(str_pad(RemessaAbstract::$entryData['agencia'], 4, 0, STR_PAD_LEFT)
                         . str_pad(RemessaAbstract::$entryData['posto'], 2, 0, STR_PAD_LEFT)
                         . str_pad(RemessaAbstract::$entryData['codigo_beneficiario'], 5, 0, STR_PAD_LEFT)
-                        . str_pad(strftime("%y", strtotime($this->entryData['data_emissao'])), 2, 0, STR_PAD_LEFT)
+                        . str_pad($ano, 2, 0, STR_PAD_LEFT)
                         . 2
                         . str_pad($this->data['nosso_numero'], 5, 0, STR_PAD_LEFT));
-        return strftime("%y", strtotime($this->entryData['data_emissao'])) . 2 . str_pad($this->data['nosso_numero'], 5, 0, STR_PAD_LEFT) . $modulo11['digito'];
+        return str_pad($ano, 2, 0, STR_PAD_LEFT) . 2 . str_pad($this->data['nosso_numero'], 5, 0, STR_PAD_LEFT) . $modulo11['digito'];
     }
 
     protected static function modulo11($num, $base = 9) {
