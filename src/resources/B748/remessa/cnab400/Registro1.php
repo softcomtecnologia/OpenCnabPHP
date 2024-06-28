@@ -347,13 +347,21 @@ class Registro1 extends Generico1 {
     }
 
     protected function set_nosso_numero($value) {
+        if (strlen($value) > 5) {
+            $nossoNumero = intval(substr($value, -5));
+            $bytecode = intval(substr($value, 2, 1));
+        } else {
+            $nossoNumero = intval($value);
+            $bytecode = 2; // Byte padrão.
+        }
+    
         $modulo11 = self::modulo11(str_pad(RemessaAbstract::$entryData['agencia'], 4, 0, STR_PAD_LEFT)
                         . str_pad(RemessaAbstract::$entryData['posto'], 2, 0, STR_PAD_LEFT)
                         . str_pad(RemessaAbstract::$entryData['codigo_beneficiario'], 5, 0, STR_PAD_LEFT)
                         . str_pad(strftime("%y", strtotime($this->entryData['data_emissao'])), 2, 0, STR_PAD_LEFT)
-                        . 2
-                        . str_pad($value, 5, 0, STR_PAD_LEFT));
-        $this->data['nosso_numero'] = strftime("%y", strtotime($this->entryData['data_emissao'])) . 2 . str_pad($value, 5, 0, STR_PAD_LEFT) . $modulo11['digito'];
+                        . $bytecode
+                        . str_pad($nossoNumero, 5, 0, STR_PAD_LEFT));
+        $this->data['nosso_numero'] = strftime("%y", strtotime($this->entryData['data_emissao'])) . $bytecode . str_pad($nossoNumero, 5, 0, STR_PAD_LEFT) . $modulo11['digito'];
     }
 
     protected static function modulo11($num, $base = 9) {
