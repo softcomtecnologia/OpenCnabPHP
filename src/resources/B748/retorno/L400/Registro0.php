@@ -24,10 +24,11 @@
 * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 namespace CnabPHP\resources\B748\retorno\L400;
-use CnabPHP\resources\generico\retorno\L400\Generico0;
+
+use CnabPHP\RegistroRetSicredAbstract;
 use CnabPHP\RetornoAbstract;
 
-class Registro0 extends Generico0
+class Registro0 extends RegistroRetSicredAbstract
 {
     public $trailler;
     protected $meta = array(
@@ -127,4 +128,10 @@ class Registro0 extends Generico0
         }
         //RetornoAbstract::$linesCounter--;
     }
+
+    public function getRegistros($lote = 1)
+	{
+		//$lote = $this->children[$lote-1];
+		return $this->getChilds();
+	}
 }

@@ -27,10 +27,9 @@
 
 namespace CnabPHP\resources\B748\retorno\L400;
 
-use CnabPHP\resources\generico\retorno\L400\Generico9;
-use CnabPHP\Exception;
+use CnabPHP\RegistroRetSicredAbstract;
 
-class Registro9 extends Generico9 {
+class Registro9 extends RegistroRetSicredAbstract {
 
     protected $meta = array(
         'tipo_registro' => array(//01.5

@@ -27,10 +27,10 @@
 
 namespace CnabPHP\resources\B748\retorno\L400;
 
-use CnabPHP\resources\generico\retorno\L400\Generico1;
+use CnabPHP\RegistroRetSicredAbstract;
 use CnabPHP\RetornoAbstract;
 
-class Registro1 extends Generico1 {
+class Registro1 extends RegistroRetSicredAbstract {
 
     public $trailler;
     protected $meta = array(
